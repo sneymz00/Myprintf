@@ -1,4 +1,4 @@
-NAME 		= 		ft_printf.a
+NAME 		= 		libftprintf.a
 LIB 		= 		ar -rcs
 RM 			= 		rm -f
 
@@ -13,7 +13,7 @@ CCFLAGS	= 		-Wall -Wextra -Werror
 #									SRC										  #
 ###############################################################################
 
-SRC 	= 		ft_putstr.c ft_putdecimal.c ft_hexadecimal.c
+SRC 	= 		ft_putstr.c ft_putdecimal.c ft_hexadecimal.c ft_printf.c
 
 OBJ 	= 		$(SRC:.c=.o)
 
