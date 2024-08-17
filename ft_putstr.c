@@ -6,7 +6,7 @@
 /*   By: camurill <camurill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 02:33:10 by camurill          #+#    #+#             */
-/*   Updated: 2024/02/20 21:16:52 by camurill         ###   ########.fr       */
+/*   Updated: 2024/02/21 13:40:17 by camurill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	ft_characther(int c)
 {
-	if (write(1, &c, 1) < 0)
+	if (write(1, &c, 1) == -1)
 		return (-1);
 	return (1);
 }
@@ -30,7 +30,7 @@ int	ft_string(char *str)
 		return (ft_string("(null)"));
 	while (str[i])
 	{
-		if(ft_characther(str[i]) < 0)
+		if (ft_characther(str[i]) < 0)
 			return (-1);
 		i++;
 	}

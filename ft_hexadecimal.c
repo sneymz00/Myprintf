@@ -6,7 +6,7 @@
 /*   By: camurill <camurill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 20:07:13 by camurill          #+#    #+#             */
-/*   Updated: 2024/02/20 21:08:24 by camurill         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:08:02 by camurill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int	ft_counthexa(unsigned long n)
 {
-	int count;
+	int	count;
 
 	count = 0;
-	while(n)
+	while (n)
 	{
 		count++;
 		n = n / 16;
@@ -33,33 +33,31 @@ int	ft_hexadecimal(unsigned int hexa, const char places)
 
 	tab = "0123456789ABCDEF";
 	tab2 = "0123456789abcdef";
+	if (hexa == 0)
+		return (ft_characther('0'));
 	count = ft_counthexa(hexa);
-	if (hexa > 15)
-		ft_hexadecimal(hexa / 16, places);
-	if (places == 'X')
-		ft_characther(tab[hexa % 16]);
-	else if (places == 'x')
-		ft_characther(tab2[hexa % 16]);
+	if (hexa > 15 && ft_hexadecimal(hexa / 16, places) < 0)
+		return (-1);
+	if (places == 'X' && ft_characther(tab[hexa % 16]) < 0)
+		return (-1);
+	else if (places == 'x' && ft_characther(tab2[hexa % 16]) < 0)
+		return (-1);
 	return (count);
 }
 
-int	ft_voidpointer(unsigned long n, char i)
+int	ft_voidpointer(unsigned long n)
 {
 	char	*tab;
 	int		count;
 
-	tab = "0123456789ABCDEF";
-	count = ft_counthexa(n) + 2;
-	if (i == 'a')
-	{
-		ft_string("0x");
-		i++;
-	}
-	if (n > 15)
-	{
-		ft_voidpointer(n / 16, i);
-	}
-	ft_characther(tab[n % 16]);
+	tab = "0123456789abcdef";
+	count = ft_counthexa(n);
+	if (n == 0)
+		return (ft_characther('0'));
+	if (n > 15 && ft_voidpointer(n / 16) < 0)
+		return (-1);
+	if (ft_characther(tab[n % 16]) < 0)
+		return (-1);
 	return (count);
 }
 /*

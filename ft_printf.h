@@ -6,7 +6,7 @@
 /*   By: camurill <camurill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:59:06 by camurill          #+#    #+#             */
-/*   Updated: 2024/02/20 16:33:13 by camurill         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:30:25 by camurill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	ft_string(char *str);
 int	ft_number(int n);
 int	ft_unsigned_number(unsigned int n);
 int	ft_hexadecimal(unsigned int n, const char places);
-int	ft_voidpointer(unsigned long n, char i);
+int	ft_voidpointer(unsigned long n);
 
 #endif

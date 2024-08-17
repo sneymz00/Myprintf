@@ -21,9 +21,7 @@ OBJ 	= 		$(SRC:.c=.o)
 #						          SRC BONUS			   						  #
 ###############################################################################
 
-BONUSSRC = 
 
-BONUSOBJ = $(BONUSSRC:.c=.o)
 
 ###############################################################################
 #									INLUDES									  #
@@ -39,9 +37,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(INCLUDE) Makefile
 	$(LIB) $(NAME) $(OBJ)
-
-bonus: $(OBJ) $(BONUSOBJ) $(INCLUDE)
-	$(LIB) $(NAME) $(BONUSOBJ) $(OBJ)
 
 %.o: %.c
 	$(CC) $(CCFLAGS) -c -o $@ $<

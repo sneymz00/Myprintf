@@ -6,7 +6,7 @@
 /*   By: camurill <camurill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 01:35:26 by camurill          #+#    #+#             */
-/*   Updated: 2024/02/20 21:15:28 by camurill         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:09:20 by camurill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_selector(va_list args, const char places)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	if (places == 'c')
@@ -28,7 +28,12 @@ static int	ft_selector(va_list args, const char places)
 	else if (places == 'x' || places == 'X')
 		size += ft_hexadecimal(va_arg(args, unsigned int), places);
 	else if (places == 'p')
-		size += ft_voidpointer(va_arg(args, unsigned long), 'a');
+	{
+		size += ft_string("0x");
+		if (size < 0)
+			return (-1);
+		size += ft_voidpointer(va_arg(args, unsigned long));
+	}
 	else if (places == '%')
 		size += ft_characther('%');
 	else
@@ -54,6 +59,8 @@ int	ft_printf(const char *placeholders, ...)
 		}
 		else
 			size += ft_characther(placeholders[i]);
+		if (size < 0)
+			return (-1);
 		i++;
 	}
 	va_end(args);
@@ -69,7 +76,8 @@ int main()
 	char s[] = "string";
 	int lg;
 	//lg = ft_printf("hola %i", d);
-	lg = ft_printf("Hola, %p, %c, %i, %d, %u, %x ,%X, %s, %%", n, c, d, d, x, x, x, s);
+	lg = ft_printf("Hola, %p, %c, %i, %d, %u, %x ,%X, %s, %%", n, c, d, d);
+	lg = ft_printf("Hola,  %x ,%X, %s, %%", x, x, s);
 	printf("\n%i", lg);
 	return (0);
 }

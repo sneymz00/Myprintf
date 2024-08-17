@@ -6,7 +6,7 @@
 /*   By: camurill <camurill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 02:47:53 by camurill          #+#    #+#             */
-/*   Updated: 2024/02/20 21:08:26 by camurill         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:06:31 by camurill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int	ft_countnum(int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
-	while(n)
+	while (n)
 	{
 		count++;
 		n = n / 10;
@@ -27,15 +27,23 @@ static int	ft_countnum(int n)
 
 static int	ft_countunnum(unsigned int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
-	while(n)
+	while (n)
 	{
 		count++;
 		n = n / 10;
 	}
 	return (count);
+}
+
+static int	eastter_egg(int n)
+{
+	if (n == 0)
+		return (ft_characther('0'));
+	else
+		return (ft_string("-2147483648"));
 }
 
 int	ft_number(int n)
@@ -45,21 +53,20 @@ int	ft_number(int n)
 
 	index = 0;
 	size = ft_countnum(n);
-	//printf("\nsize: %d\n", size);
-	if (n == 0)
-		return(ft_characther('0'));
-	else if (n == -2147483648)
-		return(ft_string("-2147483648"));
+	if (n == 0 || n == -2147483648)
+		return (eastter_egg(n));
 	if (n < 0)
 	{
-		ft_characther('-');
+		if (ft_characther('-') < 0)
+			return (-1);
 		size += 1;
 		n *= (-1);
 	}
-	if (n > 10)
-		ft_number(n / 10);
+	if (n > 9 && ft_number(n / 10) < 0)
+		return (-1);
 	index = n % 10 + '0';
-	ft_characther(index);
+	if (ft_characther(index) < 0)
+		return (-1);
 	return (size);
 }
 
@@ -71,11 +78,12 @@ int	ft_unsigned_number(unsigned int n)
 	index = 0;
 	size = ft_countunnum(n);
 	if (n == 0)
-		return(ft_characther('0'));
-	if (n > 10)
-		ft_unsigned_number(n / 10);
+		return (ft_characther('0'));
+	if (n > 9 && ft_unsigned_number(n / 10) < 0)
+		return (-1);
 	index = n % 10 + '0';
-	ft_characther(index);
+	if (ft_characther(index) < 0)
+		return (-1);
 	return (size);
 }
 /*
